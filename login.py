@@ -3,8 +3,6 @@
 from mastodon import Mastodon
 
 url = input("Instance URL: ")
-username = input("Username: ")
-password = input("Password: ")
 
 Mastodon.create_app(
     'ThursdayBot',
@@ -14,10 +12,14 @@ Mastodon.create_app(
 )
 
 mastodon = Mastodon(client_id = 'pytooter_clientcred.secret',)
+
+print(mastodon.auth_request_url())
+
+password = input("Code: ")
+
 mastodon.log_in(
-    username,
-    password,
+    code = password,
     to_file = 'pytooter_usercred.secret'
-)
+ )
 
 print("Sign-in complete. Make sure to keep all .secret files secret!")
